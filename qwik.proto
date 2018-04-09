@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package qwik;
+
+message QwikEvent {
+    enum Type {
+        FILESYSTEM = 0;
+    }
+    string id = 1;
+    Type type = 2;
+    string srcIp = 3;
+    uint64 timestamp = 4;
+    oneof event {
+        FileSystemEvent fsevent = 5;
+    }
+}
+
+message FileSystemEvent {
+    string path = 1;
+    uint32 op = 2;
+    uint64 modifiedTime = 3;
+    uint64 size = 4;
+}
